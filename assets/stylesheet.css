@@ -4,13 +4,13 @@ body {
     line-height: 1;
 }
 header {
-    background-color: ;
+    background-color: #41B3A3;
 }
 h1 {
     font-family: 'Satisfy';
 }
 textarea {
-    background: transparent;
+    background: #85dcb8;
     border: none;
     resize: none;
     color: #000000;
