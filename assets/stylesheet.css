@@ -10,7 +10,7 @@ h1 {
     font-family: 'Satisfy';
 }
 textarea {
-    background: #85dcb8;
+    background: transparent;
     border: none;
     resize: none;
     color: #000000;
@@ -57,8 +57,7 @@ textarea {
     border-left: 1px solid black;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    background-color: #06AED5;
-    color: white;
+    color: rgb(8, 8, 8);
 }
 .saveBtn i: hover {
     font-size: 20px;
