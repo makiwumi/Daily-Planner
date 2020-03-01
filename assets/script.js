@@ -1,11 +1,14 @@
 $(document).ready(function () {
+    //variable to use moment for the whole script
     const today = moment();
-    //Setting up the date and appending to the HTML page
+    //Display current day using current day id
     $("#currentDay").text(today.format("dddd, MMMM Do"));
-
-    var now = parseInt(moment().format('HH'));
+    //variable for current time from moment to change color of past present future
+    var now = parseInt(moment().format('H'));
     console.log(now)
 
+
+    //Variable for all inputs in each time box for local storage
     var $userInput9 = $("#userInput9");
     var $userInput10 = $("#userInput10");
     var $userInput11 = $("#userInput11");
@@ -18,16 +21,18 @@ $(document).ready(function () {
 
 
     $("textarea").each(function () {
-        var name = parseInt($(this).attr("name"));
-        if (name < now) {
-            $(this).addClass("bg-gray");
+        for (let hour = 9; hour <= 17;hour++){
+            if (hour < now) {
+                $(this).addClass("bg-gray");
+            }
+            if (hour > now) {
+                $(this).addClass("bg-green")
+            }
+            if (hour === now) {
+                $(this).addClass("bg-red")
+            }
         }
-        if (name > now) {
-            $(this).addClass("bg-green")
-        }
-        if (name === now) {
-            $(this).addClass("bg-red")
-        }
+        
     })
 
     $("button").on("click", function () {
