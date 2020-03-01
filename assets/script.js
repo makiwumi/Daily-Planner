@@ -1,34 +1,59 @@
-// Create moment variable to use date and time
-const mo = moment();
+$(document).ready(function () {
+    const today = moment();
+    //Setting up the date and appending to the HTML page
+    $("#currentDay").text(today.format("dddd, MMMM Do"));
 
-//Display current date in jumbotron
+    var now = parseInt(moment().format('HH'));
+    console.log(now)
 
-$("#currentDay").text(mo.format("dddd, MMMM Do"));
-console.log(mo.format("dddd, MMMM Do"));
+    var $userInput9 = $("#userInput9");
+    var $userInput10 = $("#userInput10");
+    var $userInput11 = $("#userInput11");
+    var $userInput12 = $("#userInput12");
+    var $userInput1 = $("#userInput1");
+    var $userInput2 = $("#userInput2");
+    var $userInput3 = $("#userInput3");
+    var $userInput4 = $("#userInput4");
+    var $userInput5 = $("#userInput5");
 
-// variables for on save button click 
-// commented out for test in non-standard hours
-let nowHour24 = moment().format('H');
-let nowHour12 = moment().format('h');
-let test = false;
 
-// set times for tesitng after hours
-if (test) {
-    nowHour12 = 1;
-}
-console.log(test);
+    $("textarea").each(function () {
+        var name = parseInt($(this).attr("name"));
+        if (name < now) {
+            $(this).addClass("bg-gray");
+        }
+        if (name > now) {
+            $(this).addClass("bg-green")
+        }
+        if (name === now) {
+            $(this).addClass("bg-red")
+        }
+    })
 
-// Get stored todos from localStorage
-  // Parsing the JSON string to an object
-let storedPlans = JSON.parse(localStorage.getItem("storedPlans"));
+    $("button").on("click", function () {
 
-if (test) { console.log(storedPlans); }
+        //setting items in the local storage
+        localStorage.setItem("9AM", ($userInput9.val()))
+        localStorage.setItem("10AM", ($userInput10.val()))
+        localStorage.setItem("11AM", ($userInput11.val()))
+        localStorage.setItem("12AM", ($userInput12.val()))
+        localStorage.setItem("1PM", ($userInput1.val()))
+        localStorage.setItem("2PM", ($userInput2.val()))
+        localStorage.setItem("3PM", ($userInput3.val()))
+        localStorage.setItem("4PM", ($userInput4.val()))
+        localStorage.setItem("5PM", ($userInput5.val()))
 
-// If plans were retrieved from localStorage, update the plan array to it
-if (storedPlans !== null) {
-    planTextArr = storedPlans;
-} else {
-    // this should only occur on first time the app is loaded in the browser
-    // helpfully remind user that lunch is important
-    planTextArr = new Array(9);
-}
+    })
+
+    //getting the content stored and sending to the screen. When page is refreshed content will stay
+    $("#userInput9").append(localStorage.getItem("9AM"));
+    $("#userInput10").append(localStorage.getItem("10AM"));
+    $("#userInput11").append(localStorage.getItem("11AM"));
+    $("#userInput12").append(localStorage.getItem("12AM"));
+    $("#userInput1").append(localStorage.getItem("1PM"));
+    $("#userInput2").append(localStorage.getItem("2PM"));
+    $("#userInput3").append(localStorage.getItem("3PM"));
+    $("#userInput4").append(localStorage.getItem("4PM"));
+    $("#userInput5").append(localStorage.getItem("5PM"));
+
+})
